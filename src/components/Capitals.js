@@ -2,7 +2,7 @@
 export function Capitals() {
     return(
         <div>
-            <h2>Capitals</h2>
+            <h4>Capitals</h4>
         </div>
     );
 }
