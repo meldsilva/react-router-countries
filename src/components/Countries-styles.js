@@ -34,8 +34,10 @@ export const StyledTableCell = styled.td`
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  font-size: 25px;
 `;  
   
-//   tr:nth-child(even) {
-//     background-color: #dddddd;
-//   }
+
+export const StyledTableRow = styled.tr`
+    background-color: ${prop => prop.row % 2 ? '#b8c6cf' : '#e5e4e2'};
+`;

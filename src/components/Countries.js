@@ -1,4 +1,4 @@
-import { StyledLink, StyledNav, StyledTable, StyledTableHeader, StyledTableCell } from "./Countries-styles";
+import { StyledLink, StyledNav, StyledTable, StyledTableHeader,StyledTableRow, StyledTableCell } from "./Countries-styles";
 import { useState, useEffect } from "react";
 import { Outlet } from "react-router";
 import React from "react";
@@ -12,8 +12,8 @@ function Countries() {
     useEffect( () => {
         // setloading(true);
         
-        fetch("https://restcountries.eu/rest/v2/all")
-        // fetch("https://restcountries.eu/rest/v2/regionalbloc/saarc")
+        //fetch("https://restcountries.eu/rest/v2/all")
+        fetch("https://restcountries.eu/rest/v2/regionalbloc/saarc")
         .then(response => response.json())
         .then(setCountryData)
         .then( ()=>setloading(false) )
@@ -24,7 +24,9 @@ function Countries() {
     if(error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
     if(!country_list) return null;    
 
+    let row = 0;
     return(
+        
         
         <StyledNav>
             
@@ -32,19 +34,24 @@ function Countries() {
             <StyledLink to="neighbors">Neighbors</StyledLink>
 
             <StyledTable>
-                <tr>
+                <thead>
                     <StyledTableHeader>Country</StyledTableHeader>
                     <StyledTableHeader>Capital</StyledTableHeader>
                     <StyledTableHeader>Population</StyledTableHeader>
-                </tr>
+                </thead>
                 {
+                    
                     country_list.map( (item) =>
-                    <tr>
+                    
+                    <tbody>
+                    <StyledTableRow row={row++}>
                         <StyledTableCell>{item.name}</StyledTableCell>
                         <StyledTableCell>{item.capital}</StyledTableCell>
                         <StyledTableCell>{item.population.toLocaleString()}</StyledTableCell>
-                    </tr>
+                    </StyledTableRow>
+                    </tbody>
                     )
+                    
                 }
             </StyledTable>
 
