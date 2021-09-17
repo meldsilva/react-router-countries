@@ -9,7 +9,7 @@ function Countries() {
     const [country_list, setCountryData] = useState(null);
     const [loading, setloading] = useState(false);
     const [error, setError] = useState(null);
-    const [input_value, setInput] = useState('nafta');
+    const [input_value, setInput] = useState('saarc');
 
     const nameRef = React.useRef();
 
@@ -27,6 +27,10 @@ function Countries() {
         event.preventDefault(); //WTF does this do? Ans: Prevents resubmission of form when submitting the form.
         // console.log('name: ', nameRef.current.value);
         setInput(nameRef.current.value);
+
+        // const form = event.target;
+        // console.log('name: ', form.name);
+        // setInput(form.name);
     }
 
     // const handleChange = (e) => {
@@ -51,23 +55,37 @@ function Countries() {
                         type="text"
                         ref={nameRef}
                     />
+                    <button type="Submit" >Submit</button>
                 </div>
-                <button type="Submit" >Submit</button>
+
             </form>
             <StyledTable>
                 <thead>
+                    <StyledTableHeader>Flag</StyledTableHeader>
                     <StyledTableHeader>Country</StyledTableHeader>
                     <StyledTableHeader>Capital</StyledTableHeader>
                     <StyledTableHeader>Population</StyledTableHeader>
+                    <StyledTableHeader>Currency</StyledTableHeader>
                 </thead>
                 {
                     country_list.map( (item) =>
                     
                     <tbody>
                     <StyledTableRow row={row++}>
+                        <StyledTableCell align="center">
+                            <img alt={item.name}
+                            src={item.flag}
+                                 height="20px"
+                                 align="center"
+
+
+
+                            />
+                        </StyledTableCell>
                         <StyledTableCell>{item.name}</StyledTableCell>
                         <StyledTableCell>{item.capital}</StyledTableCell>
-                        <StyledTableCell>{item.population.toLocaleString()}</StyledTableCell>
+                        <StyledTableCell align="right">{item.population.toLocaleString()}</StyledTableCell>
+                        <StyledTableCell>{item.currencies[0].name + " [" + item.currencies[0].code + "]"}</StyledTableCell>
                     </StyledTableRow>
                     </tbody>
                     )

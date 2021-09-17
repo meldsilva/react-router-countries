@@ -32,9 +32,11 @@ export const StyledTableHeader = styled.th`
 
 export const StyledTableCell = styled.td`
   border: 1px solid #dddddd;
-  text-align: left;
+
+  text-align:
+      ${prop => prop.align? prop.align: "left"};
   padding: 8px;
-  font-size: 25px;
+  font-size: 20px;
 `;  
   
 
