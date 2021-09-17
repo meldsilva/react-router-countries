@@ -1,5 +1,6 @@
-1. Change input box to drop down of pre-populated region blocks
-2. Test vaidation if wrong region bloc is passed
-3. Try to make region and region bloc toggle
+1. Fix width table and cells with ... for long texts and tooltips - INCOMPLETE
+2. Test validation if wrong region bloc is passed - DONE
+3. Change input box to drop down of pre-populated region blocks
+4. Try to make region and region bloc toggle
     and drop down populates with appropriate bloc or region value
-4. Fix width table and cells with ... for long texts and tooltips
+5. React table

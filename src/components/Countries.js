@@ -1,7 +1,23 @@
-import { StyledLink, StyledNav, StyledTable, StyledTableHeader,StyledTableRow, StyledTableCell } from "./Countries-styles";
+import { StyledLink, StyledNav, StyledTable, StyledTableHeader,
+    StyledTableRow, StyledTableCell} from "./Countries-styles";
 import { useState, useEffect } from "react";
 import { Outlet } from "react-router";
 import React from "react";
+
+const region_bloc_codes = [
+    { code: 'EU',       desc: 'European Union'},
+    { code: 'EFTA',     desc: 'European Free Trade Association'},
+    { code: 'CARICOM',  desc: 'Caribbean Community'},
+    { code: 'PA',       desc: 'Pacific Alliance'},
+    { code: 'AU',       desc: 'African Union'},
+    { code: 'USAN',     desc: 'Union of South American Nations'},
+    { code: 'AL',       desc: 'Arab League'},
+    { code: 'ASEAN',    desc: 'Association of Southeast Asian Nations'},
+    { code: 'CAIS',     desc: 'Central American Integration System'},
+    { code: 'CEFTA',    desc: 'Central European Free Trade Agreement'},
+    { code: 'NAFTA',    desc: 'North American Free Trade Agreement'},
+    { code: 'SAARC',    desc: 'South Asian Association for Regional Cooperation'}
+];
 
 function Countries() {
     //this is an example of a form with uncontroled input
@@ -39,7 +55,18 @@ function Countries() {
 
     if(loading) return <h1 style={ {color: "magenta" } }>Loading...</h1>;
     if(error) return <pre>{JSON.stringify(error, null, 2)}</pre>;
-    if(!country_list) return null;    
+    
+    // console.log('http response', JSON.stringify(country_list));
+    // console.log('country list', country_list);
+    if(!country_list) {
+        return null;
+    } else {
+        let resp = JSON.stringify(country_list);
+        // console.log('Response string: ',resp);
+        if (resp.search('"status":404,') > -1) {
+            return <h3>{`${input_value} in not a valid input.`}</h3>;
+        }
+    }
 
     let row = 0;
 
@@ -55,40 +82,40 @@ function Countries() {
                         type="text"
                         ref={nameRef}
                     />
-                    <button type="Submit" >Submit</button>
+                    <button type="Submit"  >
+                        Submit
+                    </button>
                 </div>
 
             </form>
             <StyledTable>
-                <thead>
-                    <StyledTableHeader>Flag</StyledTableHeader>
-                    <StyledTableHeader>Country</StyledTableHeader>
-                    <StyledTableHeader>Capital</StyledTableHeader>
-                    <StyledTableHeader>Population</StyledTableHeader>
-                    <StyledTableHeader>Currency</StyledTableHeader>
-                </thead>
-                {
+                <StyledTableHeader>
+                    <StyledTableRow>
+                        <StyledTableCell style={{width:"10%"}}>Flag</StyledTableCell>
+                        <StyledTableCell style={{width:"40%"}}>Country</StyledTableCell>
+                        <StyledTableCell style={{width:"20%"}}>Capital</StyledTableCell>
+                        <StyledTableCell style={{width:"20%"}}>Population</StyledTableCell>
+                        <StyledTableCell style={{width:"20%"}}>Currency</StyledTableCell>
+                    </StyledTableRow>
+                </StyledTableHeader>
+                {<tbody>{
                     country_list.map( (item) =>
-                    
-                    <tbody>
-                    <StyledTableRow row={row++}>
-                        <StyledTableCell align="center">
+                    <StyledTableRow key={Math.random().toString()}>
+                        <StyledTableCell key={row} align="center">
                             <img alt={item.name}
                             src={item.flag}
                                  height="20px"
                             />
                         </StyledTableCell>
-                        <StyledTableCell>{item.name}</StyledTableCell>
-                        <StyledTableCell>{item.capital}</StyledTableCell>
-                        <StyledTableCell align="right">{item.population.toLocaleString()}</StyledTableCell>
-                        <StyledTableCell>{item.currencies[0].name + " [" + item.currencies[0].code + "]"}</StyledTableCell>
+                        <StyledTableCell key={Math.random().toString()}>{item.name}</StyledTableCell>
+                        <StyledTableCell key={Math.random().toString()}>{item.capital}</StyledTableCell>
+                        <StyledTableCell align="right" key={Math.random().toString()}>{item.population.toLocaleString()}</StyledTableCell>
+                        <StyledTableCell key={Math.random().toString()}>{item.currencies[0].name + " [" + item.currencies[0].code + "]"}</StyledTableCell>
                     </StyledTableRow>
-                    </tbody>
-                    )
                     
+                    )}</tbody>
                 }
             </StyledTable>
-
             <Outlet />
         </StyledNav>
     );

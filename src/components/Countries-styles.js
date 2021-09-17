@@ -21,17 +21,20 @@ export const StyledNav = styled.nav`
 export const StyledTable = styled.table`
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    table-layout: fixed;
+    width: 80%;
 `;
 
-export const StyledTableHeader = styled.th`
+export const StyledTableHeader = styled.thead`
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
-  color: white;
+  color: black;
   background: #719a9b;
   font-size: 18px;
+  font-weight: bold;
   text-align: center;
+  width: 100%;
 `;
 
 export const StyledTableCell = styled.td`
@@ -41,8 +44,8 @@ export const StyledTableCell = styled.td`
       ${prop => prop.align? prop.align: "left"};
   padding: 8px;
   font-size: 15px;
+  table-layout: fixed;
 `;  
-  
 
 export const StyledTableRow = styled.tr`
     background-color: ${prop => prop.row % 2 ? '#dae8e6' : '#ffffff'};
