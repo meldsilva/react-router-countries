@@ -25,10 +25,14 @@ export const StyledTable = styled.table`
 `;
 
 export const StyledTableHeader = styled.th`
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-  `;
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  color: white;
+  background: #719a9b;
+  font-size: 18px;
+  text-align: center;
+`;
 
 export const StyledTableCell = styled.td`
   border: 1px solid #dddddd;
@@ -36,10 +40,10 @@ export const StyledTableCell = styled.td`
   text-align:
       ${prop => prop.align? prop.align: "left"};
   padding: 8px;
-  font-size: 20px;
+  font-size: 15px;
 `;  
   
 
 export const StyledTableRow = styled.tr`
-    background-color: ${prop => prop.row % 2 ? '#b8c6cf' : '#e5e4e2'};
+    background-color: ${prop => prop.row % 2 ? '#dae8e6' : '#ffffff'};
 `;

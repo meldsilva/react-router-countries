@@ -76,10 +76,6 @@ function Countries() {
                             <img alt={item.name}
                             src={item.flag}
                                  height="20px"
-                                 align="center"
-
-
-
                             />
                         </StyledTableCell>
                         <StyledTableCell>{item.name}</StyledTableCell>
